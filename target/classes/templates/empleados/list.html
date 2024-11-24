@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Empleados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi4pbJ45ZFc_yp_WRW43GQ5Ih31FSiBGnz4A&s');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .empleado-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .empleado-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .empleado-info {
+            margin-bottom: 10px;
+        }
+
+        .empleado-actions {
+            text-align: right;
+        }
+
+        .empleado-actions a, .empleado-actions button {
+            margin-left: 5px;
+        }
+
+        .btn-regresar {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Lista de Empleados</h1>
+
+        <!-- Botón de Regresar y Nuevo Empleado -->
+        <div class="d-flex justify-content-between mb-4">
+            <a href="/administrador/paginaprincipal" class="btn btn-secondary btn-sm btn-regresar">Regresar</a>
+            <a href="/administrador/empleados/new" class="btn btn-success">Nuevo Empleado</a>
+        </div>
+
+        <!-- Div para cada empleado -->
+        <div th:each="empleado : ${empleados}" class="empleado-card">
+            <div class="empleado-info">
+                <h5>ID: <span th:text="${empleado.id}">ID</span></h5>
+                <p>Nombre: <strong th:text="${empleado.nombre}">Nombre</strong></p>
+                <p>Cargo: <strong th:text="${empleado.cargo}">Cargo</strong></p>
+            </div>
+            <div class="empleado-actions">
+                <!-- Ver detalles -->
+                <a th:href="@{/administrador/empleados/{id}(id=${empleado.id})}" class="btn btn-info btn-sm">Detalles</a>
+                
+                <!-- Editar empleado -->
+                <a th:href="@{/administrador/empleados/editar/{id}(id=${empleado.id})}" class="btn btn-warning btn-sm">Editar</a>
+                
+                <!-- Eliminar empleado -->
+                <form th:action="@{/administrador/empleados/delete/{id}(id=${empleado.id})}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

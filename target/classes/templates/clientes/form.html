@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Cliente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        body {
+            background-image: url('https://f.hubspotusercontent00.net/hubfs/53/ES%20Blog%20images/%5BGu%C3%ADa%20gratis%5D%207%20temas%20que%20debes%20abordar%20en%20la%20primera%20reuni%C3%B3n%20con%20un%20nuevo%20cliente/Estrategias%20con%20Nuevos%20clientes.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        
+        .admin-banner {
+            background-color: #4596ec; 
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        
+        .form-container {
+            max-width: 600px;
+            margin: 120px auto 20px; 
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); 
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        
+        .button-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            margin: 5px;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="admin-banner">
+        Wow! Tenemos un nuevo cliente
+    </div>
+
+    
+    <div class="form-container">
+    <h1 class="form-title" th:text="${cliente.id != null ? 'Editar Cliente' : 'Agregar Nuevo Cliente'}"></h1>
+    <form id="clienteForm" th:action="@{/clientes/save}" method="post">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" th:value="${cliente.nombre}" required/>
+        </div>
+        <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="apellido" name="apellido" th:value="${cliente.apellido}" required/>
+        </div>
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" name="telefono" th:value="${cliente.telefono}" required/>
+        </div>
+        <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="direccion" name="direccion" th:value="${cliente.direccion}" required/>
+        </div>
+        <div class="mb-3">
+            <label for="user" class="form-label">Usuario</label>
+            <input type="text" class="form-control" id="user" name="user" th:value="${cliente.user}" required/>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" name="password" th:value="${cliente.password}" required/>
+        </div>
+        <div class="button-group">
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="/clientes/clientes" class="btn btn-secondary">Volver a la Lista de Clientes</a>
+        </div>
+    </form>
+</div>
+    
+
+    
+    <div class="button-group">
+        <button type="submit" form="form" class="btn btn-success">Guardar</button>
+        <a href="/clientes/clientes" class="btn btn-secondary">Volver a la Lista de Clientes</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Empleado</title>
+    <!-- Vinculamos Bootstrap desde un CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ8vPmh3Vv6ffm7+T5y+74i2xkX7uC+p9v+y5j8dCwovx2w7HfrPz+rX1E1M" crossorigin="anonymous">
+    <style>
+        /* Fondo general con imagen */
+        body {
+            background-image: url('https://media.istockphoto.com/id/1409730623/es/foto/empresario-con-su-personal-en-un-restaurante.jpg?s=612x612&w=0&k=20&c=xlEhxHhDBF_UOGa-WDznE4vaJ5vGkaJF8fE4qaW4Unw=');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Centra el contenido vertical y horizontal */
+            position: relative; /* Añadido para usar posicionamiento absoluto del botón */
+        }
+
+        /* Contenedor del formulario */
+        .container {
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.7); /* Fondo semi-transparente */
+            border-radius: 10px;
+            border: 2px solid #007bff; /* Borde azul */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .admin-buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .admin-buttons .btn-custom {
+            width: auto;
+            max-width: 250px;
+            font-size: 16px;
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .admin-buttons .btn-custom:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        .admin-buttons .btn-custom:active {
+            background-color: #003f7d;
+            transform: translateY(1px);
+        }
+
+        /* Estilo para el botón regresar en la esquina superior izquierda */
+        .btn-back-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .btn-back-container .btn-back {
+            width: auto;
+            max-width: 250px;
+            font-size: 16px;
+            padding: 12px 25px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-back-container .btn-back:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+        }
+
+        .btn-back-container .btn-back:active {
+            background-color: #1e7e34;
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido, Empleado</h1>
+        <div class="admin-buttons">
+            <a href="/empleados/reservas" class="btn btn-custom">Ver Reservas</a>
+            <a href="/empleados/productos" class="btn btn-custom">Actualizar Pedidos</a>
+        </div>
+    </div>
+
+    <!-- Botón "Regresar" en la esquina superior izquierda -->
+    <div class="btn-back-container">
+        <a href="/login/empleado" class="btn-back">Regresar</a>
+    </div>
+
+    <!-- Vinculamos el script de Bootstrap para los componentes interactivos -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0WgjdA0i3CsdMgiWZg6b3gqhzG2t5yjl9c3Dwmw7xM8TWHe2" crossorigin="anonymous"></script>
+</body>
+</html>
