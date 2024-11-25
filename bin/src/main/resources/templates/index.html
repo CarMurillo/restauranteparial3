@@ -1,168 +1,332 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bienvenido a Restaurante CAO</title>
+    <title>Bienvenida - Restaurante CAO</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ+5v5vV3+XU7jJ6Fv4Tffv6Vg1xF5FQf6zSrl3il4vBv0r2F4pjs5uPslzV" crossorigin="anonymous">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+      <style>
+        html, body {
+            height: 100%;
             margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
-            height: 100%;
         }
 
-        .header-image {
-            width: 100%;
-            height: 50vh;
-            background-color: #ccc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        body {
+            padding: 0;
+            margin: 0;
+            background-image: url('https://www.greenpeace.org/static/planet4-colombia-stateless/2020/06/fd2920e2-blog1-1024x683.jpg'); /* Fondo de comida */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            flex-grow: 1;
+        }
+
+        .welcome-panel {
+            background-color: rgba(0, 123, 255, 0.8);
             color: white;
-            font-size: 2em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .section {
-            padding: 40px;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px auto;
             text-align: center;
-            background-color: #ffffff;
-            margin-bottom: 20px;
-        }
-
-        .section h2 {
+            width: 80%;
             font-size: 2.5em;
+            text-transform: lowercase;
+        }
+
+        .info-section {
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            max-width: 1000px;
+            margin-bottom: 50px;
+            border: 3px solid yellow;
+        }
+
+        .info-section h3 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #333;
             margin-bottom: 20px;
         }
 
-        .section p {
-            font-size: 1.1em;
+        .info-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .info-content img {
+            max-width: 45%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .info-content div {
+            width: 45%;
+        }
+
+        .info-content div h4 {
+            font-size: 2em;
+            color: #333;
+        }
+
+        .info-content div p {
+            font-size: 1.2em;
             color: #555;
             line-height: 1.6;
+        }
+
+        .access-title {
+            font-size: 3em;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #007bff;
+            margin-bottom: 30px;
+            text-transform: lowercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 5px solid red;
+        }
+
+        .container h2 {
+            margin-bottom: 30px;
+            font-size: 1.8em;
+            color: #333;
+        }
+
+        .btn {
+            padding: 15px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            border: none;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background-color: #138496;
+        }
+
+        footer {
+            position: relative;
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .typical-food-section {
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            max-width: 1000px;
+            border: 3px solid blue;
+        }
+
+        .typical-food-section h3 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #d35400;
             margin-bottom: 20px;
         }
 
-        .login-btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 30px;
+        .food-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .food-item img {
+            max-width: 45%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .food-item div {
+            width: 45%;
+        }
+
+        .food-item div h4 {
+            font-size: 1.8em;
+            color: #d35400;
+        }
+
+        .food-item div p {
             font-size: 1.2em;
-            border: none;
-            border-radius: 5px;
-            margin-top: 30px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
         }
 
-        .login-btn:hover {
-            background-color: #45a049;
+        .awards-section {
+            border: 3px solid red;
         }
-
-        .footer {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            margin-top: 20px;
-        }
-
-        .footer p {
-            margin: 0;
-            font-size: 1em;
-        }
-
-        .footer a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        .food-description {
-            margin-top: 15px;
-            font-size: 1em;
-            color: #444;
-            line-height: 1.5;
-        }
-
     </style>
+     
 </head>
 <body>
-
-    <!-- Imagen principal -->
-    <div class="header-image">
-        <h1>Bienvenidos a Restaurante CAO</h1>
+    <div class="welcome-panel">
+        <h1>Bienvenidos a rellenas oscar</h1>
+        <p>Donde el sabor y la calidad se encuentran.</p>
     </div>
 
-    <!-- Panel de bienvenida -->
-    <div class="section">
-        <h2>Bienvenida</h2>
-        <p>El mejor lugar para disfrutar de la mejor comida.</p>
-    </div>
-
-    <!-- Misión -->
-    <div class="section">
-        <h2>Misión del restaurante</h2>
-        <p>Proporcionar una experiencia culinaria única con platos tradicionales y modernos, promoviendo un ambiente acogedor y familiar.</p>
-    </div>
-
-    <!-- Visión -->
-    <div class="section">
-        <h2>Visión</h2>
-        <p>Convertirnos en el restaurante favorito de nuestra comunidad, reconocido por la calidad de nuestros platos y nuestro servicio excepcional.</p>
-    </div>
-
-    <!-- Sobre Nosotros -->
-    <div class="section">
-        <h2>Sobre Nosotros</h2>
-        <p>En Restaurante CAO, ofrecemos una experiencia culinaria única con platos tradicionales y modernos, preparados con los mejores ingredientes. Nuestro restaurante está diseñado para ofrecerte un ambiente acogedor y familiar, donde podrás disfrutar de una comida deliciosa mientras te relajas con tus seres queridos.</p>
-    </div>
-
-    <!-- Sección de Comidas Típicas Colombianas -->
-    <div class="section">
-        <h2>Comidas Típicas Colombianas</h2>
-        <p>Descubre algunos de los platos más tradicionales de la gastronomía colombiana. Cada uno de ellos es una explosión de sabores que te transportarán al corazón de Colombia.</p>
-        <div class="row">
-            <div class="col-md-4">
-                <p>Arepa de huevo</p>
-                <div class="food-description">
-                    <p>La arepa de huevo es una deliciosa receta de la región Caribe de Colombia. Consiste en una arepa frita rellena con huevo, que se cocina hasta que el interior quede suave y cremoso. Es un plato ideal para disfrutar en el desayuno o como snack, acompañado de una bebida refrescante.</p>
-                </div>
+    <div class="info-section">
+        <div class="info-content">
+            <div>
+                <h4>Misión</h4>
+                <p>Brindar una experiencia culinaria única, fusionando lo mejor de la gastronomía local e internacional, asegurando un ambiente cálido y familiar para nuestros clientes.</p>
             </div>
-            <div class="col-md-4">
-                <p>Bandeja paisa</p>
-                <div class="food-description">
-                    <p>La bandeja paisa es uno de los platos más emblemáticos de la región Andina de Colombia. Se compone de una generosa porción de arroz, frijoles, carne molida, chicharrón, arepa, huevo frito, aguacate y plátano maduro. Es un plato abundante y sabroso, ideal para los grandes apetitos.</p>
-                </div>
+            <img src="https://3.bp.blogspot.com/-BrsdioHR3ys/WqLgWKUYgNI/AAAAAAAAFGs/vRwrRnBM_sE_vPu8dhX-eMWkz0q-Hv1iwCEwYBhgL/s1600/DSC04897m.jpg" alt="Misión Restaurante">
+        </div>
+
+        <div class="info-content">
+            <img src="https://www.rellenasquipilenas.com/wp-content/uploads/2023/07/IMG_2299.jpeg" alt="Visión Restaurante">
+            <div>
+                <h4>Visión</h4>
+                <p>Ser el restaurante de referencia en la ciudad, reconocido por la calidad de sus platillos y la excelente atención al cliente, expandiéndonos a nuevos mercados en los próximos años.</p>
             </div>
-            <div class="col-md-4">
-                <p>Ajiaco</p>
-                <div class="food-description">
-                    <p>El ajiaco es una sopa típica de Bogotá, preparada con tres tipos de papas, pollo, mazorca, guasca y otros ingredientes locales. Se sirve con crema de leche, alcaparras y aguacate, lo que le da un toque cremoso y fresco. Es un plato ideal para el clima frío de la capital colombiana.</p>
-                </div>
+        </div>
+
+        <div class="info-content">
+            <div>
+                <h4>Sobre Nosotros</h4>
+                <p>En Restaurante CAO, contamos con más de 10 años de experiencia en la industria gastronómica, siempre apostando por la innovación y la excelencia en cada plato. Nuestro equipo está comprometido con ofrecer el mejor servicio a cada uno de nuestros clientes.</p>
+            </div>
+            <img src="https://media.istockphoto.com/id/1163157269/es/foto/salchichas-de-cerdo-rellenas-caseras-crudas.jpg?s=1024x1024&w=is&k=20&c=v0U_ctft9MlaZxzzECDA0dNuJJoqb584NyHhXvF8nR8=" alt="Sobre Nosotros Restaurante">
+        </div>
+    </div>
+    <!-- Sección Comidas Típicas de Colombia -->
+    <div class="typical-food-section">
+        <h3>Comidas Típicas de Colombia</h3>
+
+        <div class="info-content">
+            <div>
+                <h4>Bandeja Paisa</h4>
+                <p>Un plato icónico que incluye frijoles, arroz, chicharrón, carne molida, y más.</p>
+            </div>
+            <img src="https://cdn.colombia.com/gastronomia/2011/08/02/bandeja-paisa-1616.webp" alt="Bandeja Paisa">
+        </div>
+
+        <div class="info-content">
+            <img src="https://www.pequeocio.com/wp-content/uploads/elementor/thumbs/arepas-colombianas-pnk68qx1d33oewqnhmgvp742fruwdc86hc33o5asew.jpg" alt="Arepas">
+            <div>
+                <h4>Arepas</h4>
+                <p>Un acompañante clásico en muchos platos, hecho de maíz y relleno con diversos ingredientes.</p>
             </div>
         </div>
     </div>
+    
+	<!-- Estrellas Michelin -->
+	   <div class="typical-food-section">
+	       <h3>Premios Optenidos</h3>
 
-    <!-- Botón de ingreso al restaurante -->
-    <div class="text-center">
-        <a href="login.html">
-            <button class="login-btn">Ingresa a Nuestro Restaurante</button>
+	       <div class="info-content">
+	           <div>
+	               <h4>Estrella Michelin</h4>
+	               <p>Hasta el momento contamos con 3 Estrellas Michelin por la delicia de nuetsros platos, nuestro sueño es tener 5, asi que vamos por más.</p>
+	           </div>
+	           <img src="https://imag.bonviveur.com/simbolo-de-las-tres-estrellas-michelin-maxima-distincion-de-la-guia-michelin.jpg" alt="Estrella michelin">
+	       </div>
+
+	       <div class="info-content">
+	           <img src="https://cloudfront-us-east-1.images.arcpublishing.com/elespectador/ZVT27NKSWFGLDCRYQ4KVQ2ZHMU.jpg" alt="Arepas premio">
+	           <div>
+	               <h4>Arepas</h4>
+	               <p>Nuestra ultima estrella la ganamos con nuestras arepas de carnes. Arepas de maiz, con el mejor maiz del Huila, 
+					carne oreada de los llanos, pierna de Cerdo de Antioquia de alta calidad, Pollo desmechado de nuestro SANTANDER,
+				y por ultimo pero no menos importante rodajas de chorizo de Caldas </p>
+	           </div>
+	       </div>     
+	   </div>
+	   
+	    <div class="access-title">
+    videojuego de scratch
+</div>
+<div style="text-align: center; margin-top: 10px;">
+    <iframe src="https://scratch.mit.edu/projects/1089134991/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+</div>
+
+ <div class="access-title">
+    video de app inventor
+</div>
+<div style="text-align: center; margin-top: 10px;">
+    <video src="/images/app_inventor.mp4" controls></video>
+</div>
+	    
+	   
+	   
+	   
+    <div class="access-title">
+        accede a nuestro restaurante
+    </div>
+
+    <div class="container">
+        <h2>Iniciar Sesión</h2>
+        <a href="/login/administrador">
+            <button type="button" class="btn btn-primary">Iniciar sesión como Administrador</button>
+        </a>
+        <a href="/login/empleado">
+            <button type="button" class="btn btn-success">Iniciar sesión como Empleado</button>
+        </a>
+        <a href="/login/cliente">
+            <button type="button" class="btn btn-info">Iniciar sesión como Cliente</button>
         </a>
     </div>
 
-    <!-- Pie de página -->
-    <div class="footer">
+    <footer>
         <p>&copy; 2024 Restaurante CAO. Todos los derechos reservados.</p>
-        <p><a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a></p>
-    </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0d5jsnexveP4RxkwbStZv5apY1bVVs+d/g5ho5YZ5rXocpY3" crossorigin="anonymous"></script>
-
 </body>
 </html>
