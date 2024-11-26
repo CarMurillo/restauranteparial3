@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Opiniones</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Lista de Opiniones</h1>
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre del Cliente</th>
+                    <th>Comentario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterar sobre las opiniones -->
+                <tr th:each="opinion, iterStat : ${opiniones}">
+                    <td th:text="${iterStat.count}">1</td> <!-- Número de la fila -->
+                    <td th:text="${opinion.clienteId}">Nombre del Cliente</td>
+                    <td th:text="${opinion.comentario}">Comentario del cliente</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Botón para agregar una nueva opinión -->
+        <div class="text-center mt-4">
+            <a href="/clientes/opiniones/new" class="btn btn-success">Agregar Opinión</a>
+        </div>
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-primary">Volver al Inicio</a>
+        </div>
+    </div>
+</body>
+</html>

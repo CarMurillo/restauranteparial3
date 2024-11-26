@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.example.mongodb.proyecto.Repository.ClienteRepository;
+import com.example.mongodb.proyecto.Repository.OpinionRepository;
 import com.example.mongodb.proyecto.Repository.PedidosRepository;
 import com.example.mongodb.proyecto.Repository.ProductoRepository;
 import com.example.mongodb.proyecto.Repository.ReservasRepository;
 import com.example.mongodb.proyecto.entity.Cliente;
 import com.example.mongodb.proyecto.entity.Empleado;
+import com.example.mongodb.proyecto.entity.Opinion;
 import com.example.mongodb.proyecto.entity.Pedidos;
 import com.example.mongodb.proyecto.entity.Producto;
 import com.example.mongodb.proyecto.entity.Reservas;
@@ -41,6 +43,9 @@ public class ClienteWebController {
     
     @Autowired
     private PedidosRepository pedidosRepository;
+    
+    @Autowired
+    private OpinionRepository opinionRepository;
     
 
     // Métodos para clientes
@@ -113,8 +118,6 @@ public class ClienteWebController {
         }
         return "redirect:/clientes/reservas"; // Redirige a la lista de reservas
     }
-
-
 
     @GetMapping("/reservas/edit/{id}")
     public String editReservas(@PathVariable String id, Model model) {
@@ -233,5 +236,31 @@ public class ClienteWebController {
         pedidosRepository.delete(pedido);
         return "redirect:/clientes/pedidos";
     }
+    
+ // Formulario para escribir una nueva opinión
+    @GetMapping("/opiniones/new")
+    public String newOpinionForm(Model model) {
+        model.addAttribute("opinion", new Opinion()); // Crear una nueva opinión vacía
+        List<Cliente> clientes = clienteRepository.findAll(); // Obtener lista de clientes
+        model.addAttribute("clientes", clientes);
+        return "opiniones/form"; // Vista del formulario
+    }
+    
+ // Guardar la opinión
+    @PostMapping("/opiniones/save")
+    public String saveOpinion(@ModelAttribute Opinion opinion, Model model) {
+        opinionRepository.save(opinion); // Guardar la opinión en la base de datos
+        List<Opinion> opiniones = opinionRepository.findAll(); // Obtener todas las opiniones
+        model.addAttribute("opiniones", opiniones);
+        return "opiniones/list"; // Redirigir a la vista de lista de opiniones
+    }
 
+    
+ // Mostrar lista de opiniones
+    @GetMapping("/opiniones")
+    public String listOpinions(Model model) {
+        List<Opinion> opiniones = opinionRepository.findAll(); // Obtener todas las opiniones
+        model.addAttribute("opiniones", opiniones);
+        return "opiniones/list"; // Vista de lista de opiniones
+    }
 }
